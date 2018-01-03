@@ -16,8 +16,6 @@ while(fail(Target)){
 
 console.log(Target)
 
-$("#text1").hide();
-
 
 $("input").on("keyup", function(e){
 	if (e.which ===13){
@@ -35,7 +33,11 @@ $("input").on("keyup", function(e){
 			$("#text0").show();
 			$("#text1").hide();
 			round = calculation (Target, num_to_array(shoot));
-			$('table tr:first').after(`<tr><td>${shoot}</td><td>${round[0].length}</td><td>${round[1].length}</td></tr>`)
+			print_html(shoot,round);
+			console.log(round[2]);
+			if (round[2] == true){
+				win_game();
+			}
 		}
 	}
 })
@@ -54,6 +56,11 @@ function fail(input){
 	return value;
 }
 
+function win_game(){
+	$(".option").addClass("scale")
+	$(".option").show()
+	return true;
+}
 function print_html(shoot, round){
 	$('table tr:first').after(`<tr><td>${shoot}</td><td>${round[0].length}</td><td>${round[1].length}</td></tr>`)
 }
@@ -73,6 +80,7 @@ function calculation (target, shoot){
 	fijas = [];
 	p = 0;
 	f = 0;
+	winner = false;
 	for (var i = 0; i<4;i++)
 		for (var j = 0; j<4;j++)
 			if (target [i] === shoot[j]){
@@ -84,6 +92,8 @@ function calculation (target, shoot){
 					p += 1;
 				}
 			}
-	return [picas, fijas]
-
+	if(fijas.length==4){
+		winner = true;
+	}
+	return [picas, fijas, winner]
 }

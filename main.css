@@ -26,3 +26,26 @@ td {
 	padding: 20px;
 	border: 1px solid black;
 }
+
+#text1{
+	display: none;
+	color: red;
+	font-weight: bold;
+}
+
+.option{
+	margin-left: 300px;
+	width:50%;
+	transition: all 5s ease;
+	background-color: #6666ff;
+	opacity: 0.3;
+	color: red;
+
+}
+
+p{
+	text-align: center;
+} 
+.option.scale {
+	transform: scale(5)
+}
