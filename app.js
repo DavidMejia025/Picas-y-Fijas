@@ -8,27 +8,51 @@ function shuffle(o) {
     return o;
 };
 
-
 var Target = shuffle(numbers).slice(0,4);
 
+while(fail(Target)){
+	Target = shuffle(numbers).slice(0,4);
+}
+
 console.log(Target)
+
+$("#text1").hide();
 
 
 $("input").on("keyup", function(e){
 	if (e.which ===13){
+		
 		var shoot =	$(this).val();
-		validation = false;
-		if(shoot.length<4 || shoot.length>4){
+
+		if(shoot.length<4 || shoot.length>4||fail(shoot)){
 			var validation = true;
 			$(".user").addClass("has-error")
-		}
-		if(validation==false){
+			$("#text0").hide();
+			$("#text1").show();
+		}else{
 			$(".user").removeClass("has-error")
+			$("#text").css("color","black","font-weight","bold")
+			$("#text0").show();
+			$("#text1").hide();
 			round = calculation (Target, num_to_array(shoot));
 			$('table tr:first').after(`<tr><td>${shoot}</td><td>${round[0].length}</td><td>${round[1].length}</td></tr>`)
 		}
 	}
 })
+
+function fail(input){
+	var value = false;
+	if(input[0]==input[1]||input[0]==input[2]||input[0]==input[3]){
+		value = true;
+	}else if (input[1]==input[2]||input[1]==input[3]) {
+		value = true;
+	}else if(input[2]==input[3]){
+		value = true;
+	}else{
+		value = false;
+	}
+	return value;
+}
 
 function print_html(shoot, round){
 	$('table tr:first').after(`<tr><td>${shoot}</td><td>${round[0].length}</td><td>${round[1].length}</td></tr>`)

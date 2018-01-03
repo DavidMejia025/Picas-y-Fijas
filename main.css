@@ -1,15 +1,17 @@
-h1 {
-	color:red;
+h1, h4 {
+	text-align: center;
 }
 
 .container {
 	align-content: center;
+	width: 50%;
 }
 
-input {
-	width: 300px;
+.form-group .user  {
+	width: 60px;
 	height: 40px;
 }
+
 
 table {
     border: 1px solid black;
