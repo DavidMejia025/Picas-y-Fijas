@@ -24,14 +24,9 @@ $("input").on("keyup", function(e){
 
 		if(shoot.length<4 || shoot.length>4||fail(shoot)){
 			var validation = true;
-			$(".user").addClass("has-error")
-			$("#text0").hide();
-			$("#text1").show();
+			set_error();
 		}else{
-			$(".user").removeClass("has-error")
-			$("#text").css("color","black","font-weight","bold")
-			$("#text0").show();
-			$("#text1").hide();
+			clear_error();
 			round = calculation (Target, num_to_array(shoot));
 			print_html(shoot,round);
 			console.log(round[2]);
@@ -59,10 +54,30 @@ function fail(input){
 function win_game(){
 	$(".option").addClass("scale")
 	$(".option").show()
+	$("button").on("click", function(e){
+		$('input').val('');
+		$("td").remove();
+		$(".option").hide();
+		$(".option").removeClass("scale")
+	})
 	return true;
 }
 function print_html(shoot, round){
 	$('table tr:first').after(`<tr><td>${shoot}</td><td>${round[0].length}</td><td>${round[1].length}</td></tr>`)
+	$('input').val('');
+}
+
+function set_error(){
+	$(".user").addClass("has-error");
+	$("#text0").hide();
+	$("#text1").show();
+}
+
+function clear_error(){
+	$(".user").removeClass("has-error");
+	$("#text").css("color","black","font-weight","bold");
+	$("#text0").show();
+	$("#text1").hide();
 }
 function num_to_array(number){
 	index = 0;

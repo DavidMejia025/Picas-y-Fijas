@@ -20,13 +20,18 @@ table {
 th {
 	padding: 20px;
 	border: 1px solid black;
+	text-align: center;
 }
 
 td {
 	padding: 20px;
 	border: 1px solid black;
+	text-align: center;
 }
 
+input{
+	text-align: center;
+}
 #text1{
 	display: none;
 	color: red;
@@ -34,18 +39,25 @@ td {
 }
 
 .option{
-	margin-left: 300px;
-	width:50%;
 	transition: all 5s ease;
 	background-color: #6666ff;
-	opacity: 0.3;
+	opacity: 0.6;
 	color: red;
-
+	position: relative;
+	height: 50px;
+	display:none;
 }
 
 p{
 	text-align: center;
 } 
+
+.option button {
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  width: 50%;
+}
 .option.scale {
-	transform: scale(5)
+	transform: scale(7)
 }
