@@ -40,12 +40,13 @@ input{
 
 .option{
 	transition: all 5s ease;
-	background-color: #6666ff;
-	opacity: 0.6;
+	background-color: #444444;
+	background-size: cover;
+	opacity: 0.9;
 	color: red;
 	position: relative;
 	height: 50px;
-	display:none;
+	display: none;
 }
 
 p{
@@ -56,8 +57,14 @@ p{
   position: absolute;
   top: 50%;
   text-align: center;
-  width: 50%;
+  width: 25%;
+  font-size: 8px;
+  margin-left:120px;
+
+
+
+
 }
 .option.scale {
-	transform: scale(7)
+	transform: scale(4)
 }
