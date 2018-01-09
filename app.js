@@ -1,21 +1,5 @@
 // Initial value
-
-//var Target = Math.floor(Math.random()*9999);
-var numbers = [0,1, 2, 3, 4,5,6,7,8,9];
-
-function shuffle(o) {
-    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-};
-
-var Target = shuffle(numbers).slice(0,4);
-
-while(fail(Target)){
-	Target = shuffle(numbers).slice(0,4);
-}
-
-console.log(Target)
-
+Target = init();
 
 $("input").on("keyup", function(e){
 	if (e.which ===13){
@@ -29,14 +13,31 @@ $("input").on("keyup", function(e){
 			clear_error();
 			round = calculation (Target, num_to_array(shoot));
 			print_html(shoot,round);
-			console.log(round[2]);
 			if (round[2] == true){
-				win_game();
+				Target = win_game();
 			}
 		}
 	}
 })
 
+function init (){
+	var numbers = [0,1, 2, 3, 4,5,6,7,8,9];
+
+	function shuffle(o) {
+	    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+	    return o;
+	};
+
+	var Target = shuffle(numbers).slice(0,4);
+
+	while(fail(Target)){
+		Target = shuffle(numbers).slice(0,4);
+	}
+
+	console.log(Target)
+	return Target 
+
+}
 function fail(input){
 	var value = false;
 	if(input[0]==input[1]||input[0]==input[2]||input[0]==input[3]){
@@ -59,8 +60,9 @@ function win_game(){
 		$("td").remove();
 		$(".option").hide();
 		$(".option").removeClass("scale")
+		return init();
 	})
-	return true;
+	// return true;
 }
 function print_html(shoot, round){
 	$('table tr:first').after(`<tr><td>${shoot}</td><td>${round[0].length}</td><td>${round[1].length}</td></tr>`)
